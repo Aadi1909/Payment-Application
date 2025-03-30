@@ -41,15 +41,6 @@ The **Payment Application** is a secure and efficient platform designed for hand
    mvn spring-boot:run
    ```
 
-## API Endpoints
-| Method | Endpoint | Description |
-|--------|---------|-------------|
-| POST | `/api/auth/register` | Register a new user |
-| POST | `/api/auth/login` | Authenticate and obtain JWT |
-| GET | `/api/payments/{id}` | Get payment details |
-| POST | `/api/payments` | Process a new payment |
-| PUT | `/api/payments/refund/{id}` | Initiate a refund |
-
 ## Contribution Guidelines
 1. Fork the repository.
 2. Create a new branch for your feature: `git checkout -b feature-name`
