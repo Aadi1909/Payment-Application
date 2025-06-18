@@ -1,56 +1,117 @@
 # Payment Application
 
+A modular, microservices-based payment application designed for secure and scalable digital transactions.  
+This project includes user management, transaction processing, wallet operations, notifications, and service registration, built using Java Spring Boot (Maven).
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Service Descriptions](#service-descriptions)
+- [License](#license)
+
+---
+
 ## Overview
-The **Payment Application** is a secure and efficient platform designed for handling financial transactions. Built with **Spring Boot**, this application provides seamless payment processing, transaction management, and integration with external payment gateways.
+
+This repository provides the foundation for a digital payment platform consisting of independent services, each responsible for core aspects of a payment ecosystem. The project is organized for extensibility, reliability, and ease of deployment in a cloud-native environment.
+
+---
 
 ## Features
-- **User Authentication & Authorization**: Secure login and role-based access control.
-- **Transaction Processing**: Reliable payment gateway integration for seamless transactions.
-- **Payment History & Tracking**: Keep track of past transactions with detailed logs.
-- **Refund & Dispute Management**: Handle refunds and disputes efficiently.
-- **Admin Dashboard**: Manage users, transactions, and system configurations.
 
-## Tech Stack
-- **Backend**: Spring Boot, Java, Hibernate, Lombok
-- **Database**: PostgreSQL/MySQL
-- **Security**: Spring Security, JWT Authentication
-- **API Documentation**: Swagger
-- **Build Tool**: Maven/Gradle
+- **User Service:** User registration, authentication, and management
+- **Wallet Service:** Digital wallet creation and balance management
+- **Transaction Service:** Secure and traceable money transfer between wallets
+- **Notification Service:** Send notifications for transactions and events
+- **Service Register:** Service discovery and registration for microservice communication
+- **Microservices Architecture:** Decoupled services for scalability and maintainability
+- **Spring Boot + Maven:** Robust Java backend stack
 
-## Installation
+---
+
+## Project Structure
+
+```
+payment-application/
+└── Application/
+    ├── notification-service/   # Handles user and system notifications
+    ├── service-register/       # Service registration/discovery (e.g., Eureka, Consul)
+    ├── transaction-service/    # Core transaction logic and APIs (Spring Boot/Maven)
+    ├── user-service/           # User authentication and management
+    └── wallet-service/         # Digital wallet management
+```
+
+---
+
+## Getting Started
+
 ### Prerequisites
-- Java 17+
-- Maven/Gradle
-- PostgreSQL/MySQL
 
-### Steps
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/Aadi1909/Payment-Application.git
-   cd Payment-Application/Application
-   ```
-2. Configure the database in `application.properties`:
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/payment_db
-   spring.datasource.username=root
-   spring.datasource.password=yourpassword
-   ```
-3. Build and run the application:
-   ```sh
-   mvn clean install
-   mvn spring-boot:run
-   ```
+- Java 17+ (recommended)
+- Maven 3.8+
+- (Optional) Docker for containerized deployments
 
-## Contribution Guidelines
-1. Fork the repository.
-2. Create a new branch for your feature: `git checkout -b feature-name`
-3. Commit your changes: `git commit -m "Added new feature"`
-4. Push to the branch: `git push origin feature-name`
-5. Open a Pull Request.
+### Running Services
+
+Each service can be built and run independently:
+
+```bash
+cd Application/<service-name>
+mvn spring-boot:run
+```
+
+Replace `<service-name>` with one of:
+- `user-service`
+- `wallet-service`
+- `transaction-service`
+- `notification-service`
+- `service-register`
+
+Services typically start on different ports (see each service's application.properties).
+
+### Building all services
+
+You can build all services (sequentially):
+
+```bash
+cd Application
+for d in */ ; do
+  cd "$d"
+  mvn clean install
+  cd ..
+done
+```
+
+---
+
+## Service Descriptions
+
+- **user-service:**  
+  Handles user sign up, login, profile management, and authentication.
+
+- **wallet-service:**  
+  Manages wallet creation, balance checks, and updates for users.
+
+- **transaction-service:**  
+  Processes fund transfers, transaction history, and ensures atomicity and consistency.
+
+- **notification-service:**  
+  Sends users notifications (email/SMS/push) about transactions or important events.
+
+- **service-register:**  
+  Provides service registration and discovery to enable communication between microservices.
+
+---
 
 ## License
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
-## Contact
-For any queries, reach out to **Aadarsh Tyagi** via [GitHub](https://github.com/Aadi1909).
+MIT
 
+---
+
+*For questions, suggestions, or contributions, please create an issue or submit a pull request!*
